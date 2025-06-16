@@ -1,0 +1,42 @@
+# importing the module
+import praw 
+
+# initialize with appropriate values
+client_id = ""
+client_secret = ""
+username = ""
+password = ""
+user_agent = "" 
+
+# creating an authorized reddit instance
+reddit = praw.Reddit(client_id = "qm9HMn3ZmWASDuqY2HrxOA",
+ client_secret = "935gjE5RvEwxNI371o6tQt1BEkbtAQ",
+ username = "Sak-Tanishq0910",
+ password = "tanishq@0910",
+ user_agent = '<console:name:version (by /u/Sak-Tanishq0910)>')
+
+# to find the top most submission in the subreddit "Programmer"
+subreddit = reddit.subreddit('Programmer')
+for submission in subreddit.top(limit = 25):
+ # displays the submission title
+ print(submission.title)
+ # displays the net upvotes of the submission
+ print(submission.score) 
+
+ # displays the submission's ID
+ print(submission.id)
+ # displays the url of the submission
+ print(submission.url)
+
+# the ID of the comment
+comment_id = "fvib7aw"
+
+# instantiating the Comment class
+comment = reddit.comment(comment_id) 
+
+comment = reddit.comment(comment_id)
+print("Score before downvoting : " + str(comment.score))
+
+# downvoting the comment
+comment.downvote()
+print("Score after downvoting : " + str(comment.score))
